@@ -3,16 +3,31 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class SpecialActions_Cutscene_Tutorial : SpecialActions {
+    public AudioSource Yawn;
     private GameObject Quartermaster, Shipmaster, Firstmate;
     private string next;
 
     void Start() {
         ScreenFader.FadeOut(0);
-        NextInteraction("tutorial_start");
+        Yawn.Play();
+        next = "tutorial_start";
+        Invoke("doNext", 1f);
     }
 
     public override void DoSpecialAction(string actionTag) {
         switch (actionTag) {
+			case "PlayPromptSound":
+				EventController.Event("PromptAppears");
+			break;
+			case "PlayOrangeSplatSound":
+				EventController.Event("OrangeImpact");
+			break;
+			case "PlayRagDropSound":
+				EventController.Event("RagDrop");
+			break;
+			case "PlayRubbingSound":
+				EventController.Event("RagOnHand");
+			break;
             case "ExitTutorialRoom":
                 next = "tutorial_cutscene_start";
                 StartCoroutine(NextScene());
@@ -38,16 +53,21 @@ public class SpecialActions_Cutscene_Tutorial : SpecialActions {
         }
     }
 
+    private void doNext() { NextInteraction(next); }
+
     IEnumerator npcExit(GameObject npc) {
+        GameManager.UIManager.LockScreen();
         ScreenFader.FadeOut(1f);
         yield return new WaitForSeconds(1f);
         Destroy(npc);
         ScreenFader.FadeIn(1f);
         yield return new WaitForSeconds(1f);
+        GameManager.UIManager.UnlockScreen();
         NextInteraction(next);
     }
     
     IEnumerator NextScene() {
+        GameManager.UIManager.LockScreen();
         DontDestroyOnLoad(gameObject);
         ScreenFader.FadeOut();
         yield return new WaitForSeconds(2f);
@@ -57,6 +77,7 @@ public class SpecialActions_Cutscene_Tutorial : SpecialActions {
         Quartermaster = GameObject.Find("Quartermaster");
         Shipmaster = GameObject.Find("Shipmaster");
         Firstmate = GameObject.Find("Firstmate");
+        GameManager.UIManager.UnlockScreen();
         NextInteraction(next);
     }
 }
