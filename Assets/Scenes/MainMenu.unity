@@ -803,8 +803,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000076294, y: 76}
-  m_SizeDelta: {x: 487.9, y: 32.6}
+  m_AnchoredPosition: {x: 1.5246, y: 82}
+  m_SizeDelta: {x: 490.95, y: 105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &796772907
 MonoBehaviour:
@@ -838,7 +838,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Are you sure you want to start a new game?
+  m_Text: Argh Matey, this will erase all progress you have made. You will have to
+    start from the beginning you scallywag. Do ya want ta be continuing with this?
 --- !u!222 &796772908
 CanvasRenderer:
   m_ObjectHideFlags: 0

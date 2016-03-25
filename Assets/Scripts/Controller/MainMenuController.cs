@@ -40,7 +40,7 @@ public class MainMenuController : MonoBehaviour {
 
 	}
 
-<<<<<<< HEAD
+
 	public void ShowConfirmationPanel(){
 		NewGameConfirmationPanel.SetActive (true);
 	}
@@ -51,19 +51,17 @@ public class MainMenuController : MonoBehaviour {
 	}
 
 	public void StartNewGame(){
-		//reset the data and start a new game
-		//1. reset data
+		
 		new SaveLoad().ClearSave(); 
-		//2. start a new game
+
 		LaunchGame();
 
 	}
 
 
-=======
+
 	public void LoadCreditsMenu () {
 		SceneController.LoadCredits();
 	}
 
->>>>>>> d0705662f2e4a66613c6be9472f7c670e2a20c7d
 }
