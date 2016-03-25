@@ -12,8 +12,9 @@ public class SpecialActions_Cutscene_Tutorial : SpecialActions {
         else {
             _instance = this;
             DontDestroyOnLoad(gameObject);
-            ScreenFader.FadeOut(0);
-            if (SceneManager.GetActiveScene().name == "TutorialScene") {
+            //ScreenFader.FadeOut(0);
+			Fader.FadeOut(2);
+			if (SceneManager.GetActiveScene().name == "TutorialScene" || SceneManager.GetActiveScene().name == "TutorialSceneWithNavMesh") {
                 EventController.Event("PlayerYawn");
                 next = "tutorial_start";
                 Invoke("doNext", 1f);
@@ -32,6 +33,9 @@ public class SpecialActions_Cutscene_Tutorial : SpecialActions {
 
     public override void DoSpecialAction(string actionTag) {
         switch (actionTag) {
+            case "TestSceneChange":
+                StartCoroutine(TestSceneChange());
+                break;
 			case "SoundTutorialPrompt":
 				EventController.Event("PromptAppears");
 			break;
@@ -70,10 +74,12 @@ public class SpecialActions_Cutscene_Tutorial : SpecialActions {
 
     IEnumerator npcExit(GameObject npc) {
         GameManager.UIManager.LockScreen();
-        ScreenFader.FadeOut(1f);
+		Fader.FadeIn (1f);
+		//ScreenFader.FadeOut(1f);
         yield return new WaitForSeconds(1f);
         Destroy(npc);
-        ScreenFader.FadeIn(1f);
+		Fader.FadeOut (1f);
+        //ScreenFader.FadeIn(1f);
         yield return new WaitForSeconds(1f);
         GameManager.UIManager.UnlockScreen();
         NextInteraction(next);
@@ -81,16 +87,31 @@ public class SpecialActions_Cutscene_Tutorial : SpecialActions {
     
     IEnumerator NextScene() {
         GameManager.UIManager.LockScreen();
-        ScreenFader.FadeOut();
+		Fader.FadeIn ();
+        //ScreenFader.FadeOut();
         GameManager.InventoryManager.Hide();
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("Scenes/WorldScene");
-        ScreenFader.FadeIn();
+		Fader.FadeOut ();
+        //ScreenFader.FadeIn();
         yield return new WaitForSeconds(1f);
         Quartermaster = GameObject.Find("Quartermaster");
         Shipmaster = GameObject.Find("Shipmaster");
         Firstmate = GameObject.Find("Firstmate");
         GameManager.UIManager.UnlockScreen();
         NextInteraction(next);
+    }
+
+    IEnumerator TestSceneChange() {
+        GameManager.UIManager.LockScreen();
+		Fader.FadeIn ();
+        //ScreenFader.FadeOut();
+        GameManager.InventoryManager.Hide();
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("Scenes/Development/SiennaTestOld");
+        //ScreenFader.FadeIn();
+		Fader.FadeOut();
+        yield return new WaitForSeconds(1f);
+        GameManager.UIManager.UnlockScreen();
     }
 }

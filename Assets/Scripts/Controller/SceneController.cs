@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 
 public static class SceneController {
+	
+
 
 	public static void LoadMainMenu () {
 		LoadScene(PSScene.MainMenu);
@@ -19,7 +21,7 @@ public static class SceneController {
 
 	public static void LoadOptionsMenu () {
 		LoadScene(PSScene.OptionsMenu);
-	}
+	} 
 
 
 	public static void LoadCredits () {
@@ -28,6 +30,18 @@ public static class SceneController {
 
 	public static void LoadTutorialScene () {
 		LoadScene(PSScene.TutorialScene);
+	}
+		
+	public static void LoadMovementDemoScene () {
+		LoadScene(PSScene.MovementDemo);
+	}
+
+	public static void LoadDevelopSceneListScene () {
+		LoadScene(PSScene.DevelopmentSceneList);
+	}
+
+	public static void LoadCharacterSpritesDemo () {
+		LoadScene(PSScene.CharacterSpritesDemo);
 	}
 
 	// Uses an enum to load a scene
