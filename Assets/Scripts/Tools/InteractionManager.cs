@@ -66,9 +66,9 @@ public class Interaction {
 	public string _maxDist { private get; set; }
 	public float iMaxDist { 
 		get {
-			float md = 5f; //fuck 1000000f
+			float md = 1000000f; 
 			bool valid = _maxDist != null && float.TryParse (_maxDist, out md); 
-			return valid ? md : 5f;
+			return valid ? md : 1000000f; 
 		}
 	}
 
@@ -364,9 +364,12 @@ public class InteractionManager : MonoBehaviour {
 		Debug.Log("Distance Threshold: " + interactionDistance.ToString());
 
 		#endif
-		List<Interaction> tooFar = validInteractions.FindAll (i => interactionDistance > 5f); //fuck
+		List<Interaction> tooFar = validInteractions.FindAll (i => interactionDistance > 3f); //hard coded, subject to change.
+
+
 		List<Interaction> closeEnough = validInteractions.Except (tooFar).ToList ();
 		if (tooFar.Count == 0) {
+			Debug.Log ("It's not too far");
 			foreach (Interaction interaction in closeEnough) {
 				if (interaction.HasText) {
 					DisplayInteraction (interactor, interaction);
@@ -379,13 +382,18 @@ public class InteractionManager : MonoBehaviour {
 				GameManager.UIManager.EnableTapToContinue (interactor, displayed.Single ());
 			}
 		} else { 
-			//when interactions are too far, we move them closer to the thing they are interacting with fuck
-			//fuck fuck fuck fuck
-			GetComponent<NoahMove>().GoTo(interactor.gameObject.transform.position);     //vector 3 fuck
+
+
+			Vector3 v = interactor.gameObject.transform.position + new Vector3 (1, 1, 1);
+
+			GameObject.Find("Sadie").GetComponent<NoahMove>().GoTo(v);  
 			//from tooFar, find all interactions with an alternative, and from that get all interactions from the master list whose name matches that alternative, and add that to the close enough interactions.
-			Debug.Log("Interactions too far"); //fuck
+			Debug.Log("Interactions too far"); 
+		
+
 			List<Interaction> alternatives = tooFar.Where (x => x.iTooFar != null).SelectMany (y => validInteractions.FindAll (z => z.iName == y.iTooFar)).Union(closeEnough).Distinct().ToList();
-			HandleInteractionList (interactor, alternatives);
+			HandleInteractionList (interactor, alternatives); 
+		
 		}
 	}
 
