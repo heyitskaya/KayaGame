@@ -360,16 +360,14 @@ public class InteractionManager : MonoBehaviour {
 		List<Interaction> validInteractions = interactionList.FindAll (i => i.IsValid);
 		float interactionDistance = Vector3.Distance (interactor.transform.position, GameManager.PlayerCharacter.transform.position);
 		#if (DEBUG)
-		Debug.Log("Valid Interactions: " + string.Join(" ", validInteractions.Select(i=>i.iName).ToArray()));
-		Debug.Log("Distance Threshold: " + interactionDistance.ToString());
+		Debug.Log ("Valid Interactions: " + string.Join (" ", validInteractions.Select (i => i.iName).ToArray ()));
+		Debug.Log ("Distance Threshold: " + interactionDistance.ToString ());
 
 		#endif
 		List<Interaction> tooFar = validInteractions.FindAll (i => interactionDistance > 3f); //hard coded, subject to change.
-
-
 		List<Interaction> closeEnough = validInteractions.Except (tooFar).ToList ();
 		if (tooFar.Count == 0) {
-			Debug.Log ("It's not too far");
+			
 			foreach (Interaction interaction in closeEnough) {
 				if (interaction.HasText) {
 					DisplayInteraction (interactor, interaction);
@@ -377,29 +375,21 @@ public class InteractionManager : MonoBehaviour {
 					CompleteInteraction (interactor, interaction);
 				}
 			}
-			List<Interaction> displayed = closeEnough.Where (i => i.HasText && i.iTextType != TextType.Floating).ToList();
-			if(displayed.Count () == 1) {
+			List<Interaction> displayed = closeEnough.Where (i => i.HasText && i.iTextType != TextType.Floating).ToList ();
+			if (displayed.Count () == 1) {
 				GameManager.UIManager.EnableTapToContinue (interactor, displayed.Single ());
 			}
 		} else { 
-
-
-			Vector3 v = interactor.gameObject.transform.position + new Vector3 (1, 1, 1);
-
-			GameObject.Find("Sadie").GetComponent<NoahMove>().GoTo(v);  
-			//from tooFar, find all interactions with an alternative, and from that get all interactions from the master list whose name matches that alternative, and add that to the close enough interactions.
-			Debug.Log("Interactions too far"); 
-		
-
+			Vector3 v = interactor.gameObject.transform.position + new Vector3 (1, 0,0);
+			GameObject.Find ("Sadie").GetComponent<NoahMove> ().GoTo (v); 
 			List<Interaction> alternatives = tooFar.Where (x => x.iTooFar != null).SelectMany (y => validInteractions.FindAll (z => z.iName == y.iTooFar)).Union(closeEnough).Distinct().ToList();
-			HandleInteractionList (interactor, alternatives); 
-		
+			HandleInteractionList (interactor, alternatives);
 		}
 	}
 
+
 	public static void HandleInteraction(Interactable interactor, Interaction interaction){
 		if (interaction.HasText) {
-			
 			DisplayInteraction (interactor, interaction);
 		} else {
 			CompleteInteraction (interactor, interaction);
@@ -435,6 +425,4 @@ public class InteractionManager : MonoBehaviour {
 			HandleInteractionList (nextInteractor, nextInteractions);
 		}
 	}
-
-
 }
