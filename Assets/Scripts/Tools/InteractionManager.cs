@@ -66,9 +66,9 @@ public class Interaction {
 	public string _maxDist { private get; set; }
 	public float iMaxDist { 
 		get {
-			float md = 1000000f;
+			float md = 5f; //fuck 1000000f
 			bool valid = _maxDist != null && float.TryParse (_maxDist, out md); 
-			return valid ? md : 1000000f;
+			return valid ? md : 5f;
 		}
 	}
 
@@ -245,11 +245,14 @@ public class InteractionManager : MonoBehaviour {
 	private GameObject leftImage = null;
 	[SerializeField]
 	private GameObject rightImage = null;
+	[SerializeField]
+	private GameObject dimBackground=null;
 
 	void AddInteractionText(Interactable interactor, Interaction interaction){
 		if (interaction.HasText) {
 			GameObject newText;
 			textPanel.SetActive (true);
+			GameManager.InteractionManager.dimBackground.SetActive (true);
 			if (interaction.HasImage) {
 				ShowLeftImage (interaction.iImage);
 			}
@@ -305,6 +308,7 @@ public class InteractionManager : MonoBehaviour {
 		ClearTextPanel ();
 		GameManager.UIManager.DisableTapToContinue ();
 		textPanel.SetActive (false);
+		GameManager.InteractionManager.dimBackground.SetActive (false); 
 		rightImage.SetActive (false);
 		leftImage.SetActive (false);
 	}
@@ -324,11 +328,12 @@ public class InteractionManager : MonoBehaviour {
 			if (prevalidatedUseInteractions.Count > 0) {
 				HandleInteractionList (target, prevalidatedUseInteractions);
 			} else {
-				Interaction defaultError = GameManager.InventoryManager.Selected.GetComponent<Interactable> ().Interactions.Find (i => i.iName == "DefaultCannotUse");
+                Interaction defaultError = target.Interactions.Find(i => i.iName == "DefaultCannotUse");
+                    //GameManager.InventoryManager.Selected.GetComponent<Interactable> ().Interactions.Find (i => i.iName == "DefaultCannotUse");
 				if (defaultError != null) {
 					HandleInteraction (selected.GetComponent<Interactable> (), defaultError);
-				} else if (selected.GetComponent<Interactable> ().Debugging) {
-					Debug.Log (selected.name + " doesn't have a 'DefaultCannotUse' interaction in its XML.");
+				} else if (target.Debugging) {
+					Debug.Log (target.name + " doesn't have a 'DefaultCannotUse' interaction in its XML.");
 				}
 
 			}
@@ -357,8 +362,9 @@ public class InteractionManager : MonoBehaviour {
 		#if (DEBUG)
 		Debug.Log("Valid Interactions: " + string.Join(" ", validInteractions.Select(i=>i.iName).ToArray()));
 		Debug.Log("Distance Threshold: " + interactionDistance.ToString());
+
 		#endif
-		List<Interaction> tooFar = validInteractions.FindAll (i => interactionDistance > i.iMaxDist);
+		List<Interaction> tooFar = validInteractions.FindAll (i => interactionDistance > 5f); //fuck
 		List<Interaction> closeEnough = validInteractions.Except (tooFar).ToList ();
 		if (tooFar.Count == 0) {
 			foreach (Interaction interaction in closeEnough) {
@@ -372,8 +378,12 @@ public class InteractionManager : MonoBehaviour {
 			if(displayed.Count () == 1) {
 				GameManager.UIManager.EnableTapToContinue (interactor, displayed.Single ());
 			}
-		} else {
+		} else { 
+			//when interactions are too far, we move them closer to the thing they are interacting with fuck
+			//fuck fuck fuck fuck
+			GetComponent<NoahMove>().GoTo(interactor.gameObject.transform.position);     //vector 3 fuck
 			//from tooFar, find all interactions with an alternative, and from that get all interactions from the master list whose name matches that alternative, and add that to the close enough interactions.
+			Debug.Log("Interactions too far"); //fuck
 			List<Interaction> alternatives = tooFar.Where (x => x.iTooFar != null).SelectMany (y => validInteractions.FindAll (z => z.iName == y.iTooFar)).Union(closeEnough).Distinct().ToList();
 			HandleInteractionList (interactor, alternatives);
 		}
@@ -381,6 +391,7 @@ public class InteractionManager : MonoBehaviour {
 
 	public static void HandleInteraction(Interactable interactor, Interaction interaction){
 		if (interaction.HasText) {
+			
 			DisplayInteraction (interactor, interaction);
 		} else {
 			CompleteInteraction (interactor, interaction);
@@ -392,6 +403,7 @@ public class InteractionManager : MonoBehaviour {
 			if (interaction.iTextType == TextType.Floating) {
 				interactor.GetComponentInChildren<SpeechBubble> ().Say (interactor, interaction);
 			} else {
+				
 				GameManager.InteractionManager.AddInteractionText (interactor, interaction);
 			}
 		}

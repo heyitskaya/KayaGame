@@ -15,16 +15,20 @@ public class InventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerExi
 	private Sprite HideButton = null;
 	private Vector2 dragAnchor;
 
+
+
 	public GameObject Selected { get; private set; }
 	public bool PanelShowing { get; private set; }
 
 	private InventorySlot[] slots { get { return GetComponentsInChildren<InventorySlot> (); } }
 	public InventorySlot FirstEmptySlot { get { return slots.FirstOrDefault (slot => slot.Contents == null); } }
 
+
 	/// <summary>
 	/// Gives the item.
 	/// </summary>
 	/// <returns><c>true</c>, if item was given, <c>false</c> otherwise.</returns>
+
 	public bool GiveItem(string item){
 		GameManager.InventoryManager.gameObject.SetActive (true);
 		if (FirstEmptySlot) {
@@ -33,6 +37,7 @@ public class InventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerExi
 			if (itemToGive) {
 				this.gameObject.SetActive (true);
 				itemToGive.GetComponent<InventoryItem> ().MoveTo (FirstEmptySlot);
+				itemToGive.GetComponent<Image> ().preserveAspect = true; 
 				return true;
 			} else {
 				#if (DEBUG)

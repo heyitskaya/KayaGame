@@ -1595,7 +1595,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanInteract: 1
   tapToContinue: {fileID: 745215002}
-  screenFader: {fileID: 0}
 --- !u!114 &551736199
 MonoBehaviour:
   m_ObjectHideFlags: 0

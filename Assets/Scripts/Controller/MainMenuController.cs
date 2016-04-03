@@ -4,25 +4,35 @@
 */
 
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class MainMenuController : MonoBehaviour {
 	static bool FIRST_LOAD = true;
+
 	public GameObject NewGameButton;
 	public GameObject NewGameConfirmationPanel;
+	public GameObject LaunchGameButton;
 
 	void Start () {
 		if (FIRST_LOAD) {
 			FIRST_LOAD = false;
 			EventController.Event("menuMusicStart");
+
 		}
+		/**
+		if (new SaveLoad ().HasSaveData ()) { 
+			LaunchGameButton.GetComponent<Button> ().interactable = true; 
+		} else {
+			LaunchGameButton.GetComponent<Button> ().interactable = false; 
+		} **/
+
 	}
 
 	public void LaunchGame () {
-
 		SceneController.LoadMainGame();
+	} 
 
-	}
 
 	public void LaunchTutorial () {
 		SceneController.LoadTutorialScene();
@@ -40,7 +50,6 @@ public class MainMenuController : MonoBehaviour {
 
 	}
 
-
 	public void ShowConfirmationPanel(){
 		NewGameConfirmationPanel.SetActive (true);
 	}
@@ -51,13 +60,12 @@ public class MainMenuController : MonoBehaviour {
 	}
 
 	public void StartNewGame(){
-		
+
 		new SaveLoad().ClearSave(); 
 
 		LaunchGame();
 
 	}
-
 
 
 	public void LoadCreditsMenu () {

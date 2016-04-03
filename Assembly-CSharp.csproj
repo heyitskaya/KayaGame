@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioFile.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioList.cs" />
@@ -95,6 +96,7 @@
      <Compile Include="Assets\Scripts\Event\EventController.cs" />
      <Compile Include="Assets\Scripts\Event\EventList.cs" />
      <Compile Include="Assets\Scripts\Event\InteractionHandler.cs" />
+     <Compile Include="Assets\Scripts\Tools\CameraFollower.cs" />
      <Compile Include="Assets\Scripts\Tools\Fader.cs" />
      <Compile Include="Assets\Scripts\Tools\FloatingText.cs" />
      <Compile Include="Assets\Scripts\Tools\GameManager.cs" />
@@ -132,6 +134,7 @@
      <Compile Include="Assets\Scripts\Visual\ScreenFader.cs" />
      <Compile Include="Assets\Scripts\Visual\VisualCreditGroup.cs" />
      <Compile Include="Assets\Scripts\Visual\VisualResponse.cs" />
+     <Compile Include="Assets\SplashStart.cs" />
      <None Include="Assets\Scripts\Data\ItemDatabase\README.txt" />
      <None Include="Assets\Resources\Text\cutscene_tutorial.xml" />
      <None Include="Assets\Scripts\Visual\README.txt" />

@@ -11,7 +11,8 @@ public class OptionsMenuController : MonoBehaviour {
 	
 	public GameObject ResetGameButton;
 	public GameObject ConfirmationPanel;
-	public void Start(){
+	public void Start()
+	{
 		if (new SaveLoad ().HasSaveData ()) { 
 			ResetGameButton.GetComponent<Button> ().interactable = true; 
 		} else {
@@ -41,19 +42,10 @@ public class OptionsMenuController : MonoBehaviour {
 	
 	}
 
-	public void ShowConfirmationPanel(){
+	public void ShowConfirmationPanel()
+	{
 		ConfirmationPanel.SetActive (true);
 	}
-
-	public void HideConfirmationPanel(){
-		ConfirmationPanel.SetActive (false);
-	}
-
-
-
-
-
-
 
 
 }
