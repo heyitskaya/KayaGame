@@ -12,11 +12,30 @@ public class UIManager : MonoBehaviour {
 	GameObject tapToContinue = null;
 
 	public GameObject DimBackground;
+	public GameObject HelpTextBox;
+
+
+	void OnLevelWasLoaded (int level) {
+		if (PSSceneUtil.InGame(level)) {
+			ShowInventoryPanel();
+		} else {
+			HideInventoryPanel();
+		}
+	}
+
+	void HideInventoryPanel () {
+		GameManager.InventoryManager.ToggleActive(false);
+	}
+
+	void ShowInventoryPanel () {
+		GameManager.InventoryManager.ToggleActive(true);
+	}
 
     void Awake() {
         if (_instance == null) {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+			spawnTextBox();
         }
         else if (this != _instance) {
             Destroy(gameObject);
@@ -40,11 +59,23 @@ public class UIManager : MonoBehaviour {
 
 	public void Quit(){
 		ScreenFader.FadeOut ();
-		Invoke ("ReturnToMainMenu", 2f);
+		Invoke ("ReturnToMainMenu", 0.5f);
 	}
 
 	void ReturnToMainMenu(){
+		GameObject gm = GameObject.Find ("GameManager");
+		GameObject sadie = GameObject.Find ("Sadie");
+		GameObject cs = GameObject.Find ("Cutscene_Handler");
+
+		Destroy (gm);
+		Destroy (sadie);
+		Destroy (cs);
+
+		EventController.Event (PSEventType.HideTextBox);
+
 		SceneController.LoadMainMenu ();
+
+		Destroy (this.gameObject);
 	}
 
     public void EnableTapToContinue(Interactable interactor, Interaction interaction){
@@ -72,5 +103,14 @@ public class UIManager : MonoBehaviour {
         CanInteract = true;
         tapToContinue.GetComponent<Button> ().enabled = true;
 		tapToContinue.SetActive (false);
+	}
+
+	void spawnTextBox() {
+
+		GameObject textBox;
+
+		// Spawns the text box turned off
+		(textBox = (GameObject)Instantiate(HelpTextBox)).SetActive(false);
+		DontDestroyOnLoad(textBox);
 	}
 }
