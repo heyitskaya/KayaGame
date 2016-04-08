@@ -9,12 +9,14 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 	public bool flipped = false; //when sadie is facing right flipped is false
 	public bool startMoving = false;
 	private SpeechBubble speechBubble;
-
+	public GameObject leftObstacle;
+	public GameObject rightObstacle;
 	// Use this for initialization
 	void Start () {
 		Player = GameManager.PlayerCharacter.GetComponent<NavMeshAgent>();
 		speechBubble = Player.GetComponentInChildren<SpeechBubble>();
 		//Player = GameObject.Find ("Sadie").GetComponent<NavMeshAgent>();
+
 	}
 	
 	// Update is called once per frame
@@ -24,15 +26,18 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 				startMoving = false;
 				Debug.Log ("Stopped moving");
 				//check x then flip
-
-				if (Player.transform.position.x < 4.5f && Player.transform.position.x > 0f && startMoving==false) { //and we have stopped moving
+				//4.5f
+				//-5
+				if (Player.transform.position.x <5f  /**&& Player.transform.position.x > 0f**/ && startMoving==false) { //and we have stopped moving
 					Debug.Log("flip1");
 					if (flipped) { //if sadie is facing left
 						Flip (); //flip it sadie is facing right
 					}
 
 				} 
-				if (Player.transform.position.x < 11.333f && Player.transform.position.x > 8f && startMoving == false) {
+				//6.2  used to be 8f
+				if (Player.transform.position.x < 11.333f && Player.transform.position.x > 6.2f && startMoving == false) {
+					//this is fine
 					Debug.Log ("flip2");
 					if (!flipped) { //if sadie is facing right
 						Flip (); //flip it sadie is now facing left
