@@ -190,6 +190,10 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 100862, guid: fe2d97d93212b894ea386c4144d62f41, type: 2}
   m_PrefabInternal: {fileID: 552512398}
+--- !u!1 &322736008 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100862, guid: fe2d97d93212b894ea386c4144d62f41, type: 2}
+  m_PrefabInternal: {fileID: 1936937070}
 --- !u!4 &342599894 stripped
 Transform:
   m_PrefabParentObject: {fileID: 432212, guid: fe2d97d93212b894ea386c4144d62f41, type: 2}
@@ -1109,10 +1113,6 @@ GameObject:
 GameObject:
   m_PrefabParentObject: {fileID: 165010, guid: f394adcb0b35ce546905a551020123ab, type: 2}
   m_PrefabInternal: {fileID: 1099558643}
---- !u!1 &1322603083 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100862, guid: fe2d97d93212b894ea386c4144d62f41, type: 2}
-  m_PrefabInternal: {fileID: 628103209}
 --- !u!1001 &1344965703
 Prefab:
   m_ObjectHideFlags: 0
@@ -1989,7 +1989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flipped: 0
   startMoving: 0
-  leftObstacle: {fileID: 1322603083}
+  leftObstacle: {fileID: 322736008}
   rightObstacle: {fileID: 311426144}
 --- !u!4 &2005114666 stripped
 Transform:

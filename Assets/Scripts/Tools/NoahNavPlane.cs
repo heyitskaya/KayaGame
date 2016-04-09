@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using System;
 
 public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 
@@ -21,11 +22,10 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 	void Start () {
 		Player = GameManager.PlayerCharacter.GetComponent<NavMeshAgent>();
 		speechBubble = Player.GetComponentInChildren<SpeechBubble>();
-		//Player = GameObject.Find ("Sadie").GetComponent<NavMeshAgent>();
-		leftBound=(decimal)(-leftObstacle.transform.position.x);
-		rightBound =(decimal)( -rightObstacle.transform.position.x);
-		distance = rightBound - leftBound;
-		boundDist = decimal.Multiply (distance, ratio); // i think this would solve it
+		leftBound=(decimal)(leftObstacle.transform.position.x); //commented out the negative sign
+		rightBound =(decimal)(rightObstacle.transform.position.x); //commented out the negative sign
+		distance = Math.Abs(rightBound - leftBound);
+		boundDist = Math.Abs(decimal.Multiply (distance, ratio)); // i think this would solve it
 	
 
 	}
@@ -36,25 +36,19 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 			if (startMoving ) {
 				startMoving = false;
 				Debug.Log ("Sadie position " + Player.transform.position.x);
-			/**	Debug.Log("distance "+ distance);
-				Debug.Log ("ratio " + ratio); **/
-				//why is our bound distance 0?
 				Debug.Log ("boundDist " + boundDist);
 				Debug.Log("leftBound+boundDist "+(leftBound+boundDist));
 				Debug.Log ("leftBound " + leftBound);
 				Debug.Log("rightBound-boundDist "+(rightBound-boundDist));
 				Debug.Log("rightBound "+ rightBound); 
 				//on the left side
-				if ((decimal)Player.transform.position.x <(leftBound+boundDist)/** && (decimal)Player.transform.position.x>leftBound**/ && startMoving==false) { //and we have stopped moving
-					
+				if ((decimal)Player.transform.position.x <(leftBound+boundDist)&& startMoving==false) { //and we have stopped moving
 					if (flipped) { //if sadie is facing left
 						Flip (); //flip it sadie is facing right
 					}
-
 				} 
-				//6.2  used to be 8f
-				//on the right side
-				if (/**(decimal)Player.transform.position.x < rightBound &&**/ (decimal)Player.transform.position.x > (rightBound-boundDist) && startMoving == false) {
+			
+				if ((decimal)Player.transform.position.x > (rightBound-boundDist) && startMoving == false) {
 					//this is fine
 
 					if (!flipped) { //if sadie is facing right
@@ -68,7 +62,7 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 	void OnMouseUp(){
 		
 	}
-	void Flip(){ //Flip player character
+	void Flip(){ 
 		flipped = !flipped;
 		Player.transform.localScale = new Vector3 (Player.transform.localScale.x * -1, Player.transform.localScale.y, Player.transform.localScale.z);
 		speechBubble.transform.localScale = new Vector3(speechBubble.transform.localScale.x * -1, speechBubble.transform.localScale.y, speechBubble.transform.localScale.z);
@@ -85,7 +79,8 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 			Vector3 destination = eventData.pointerCurrentRaycast.worldPosition;
 			Player.GetComponent<NavMeshAgent> ().CalculatePath (destination, path);
 			//if(path.status == NavMeshPathStatus.PathComplete){
-			if (destination.x > Player.transform.position.x) { //destination is to right of Sadie   sadie   destination
+
+			if (destination.x > Player.transform.position.x && startMoving==true) { //destination is to right of Sadie   sadie   destination
 				
 				if (flipped) { // if sadie is facing left
 					Flip (); //sadie is now facing right
@@ -95,9 +90,9 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 					Flip (); //sadie is now facing left
 				}
 			}
-
 			Player.SetDestination (destination);
-			//}
+
+
 
 		}
 	}
