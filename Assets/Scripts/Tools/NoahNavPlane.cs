@@ -11,8 +11,8 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 	public bool startMoving = false;
 	private SpeechBubble speechBubble;
 	public GameObject leftObstacle;
-	public GameObject rightObstacle;
-	public decimal ratio=0.2m;
+	public GameObject rightObstacle; 
+	public decimal ratio=0.3m;
 
 	public decimal leftBound;
 	public decimal rightBound;
@@ -22,8 +22,10 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 	void Start () {
 		Player = GameManager.PlayerCharacter.GetComponent<NavMeshAgent>();
 		speechBubble = Player.GetComponentInChildren<SpeechBubble>();
-		leftBound=(decimal)(leftObstacle.transform.position.x); //commented out the negative sign
-		rightBound =(decimal)(rightObstacle.transform.position.x); //commented out the negative sign
+		leftBound=(decimal)(leftObstacle.transform.localPosition.x); //commented out the negative sign
+		Debug.Log("leftBound "+leftBound);
+		rightBound =(decimal)(rightObstacle.transform.localPosition.x); //commented out the negative sign
+		Debug.Log("rightBound "+rightBound);
 		distance = Math.Abs(rightBound - leftBound);
 		boundDist = Math.Abs(decimal.Multiply (distance, ratio)); // i think this would solve it
 	
@@ -42,15 +44,14 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 				Debug.Log("rightBound-boundDist "+(rightBound-boundDist));
 				Debug.Log("rightBound "+ rightBound); 
 				//on the left side
-				if ((decimal)Player.transform.position.x <(leftBound+boundDist)&& startMoving==false) { //and we have stopped moving
+				if ((decimal)Player.transform.position.x <(leftBound+boundDist+3.0m)&& startMoving==false) { //and we have stopped moving
 					if (flipped) { //if sadie is facing left
 						Flip (); //flip it sadie is facing right
 					}
 				} 
 			
 				if ((decimal)Player.transform.position.x > (rightBound-boundDist) && startMoving == false) {
-					//this is fine
-
+					
 					if (!flipped) { //if sadie is facing right
 						Flip (); //flip it sadie is now facing left
 					}
