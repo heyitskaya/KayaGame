@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/WorldScene2.unity
+- path: Assets/Scenes/TutorialSceneWithNavMesh.unity
   isLoaded: 1
   isActive: 1
