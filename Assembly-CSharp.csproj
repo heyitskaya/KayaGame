@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{BFEDEC06-E0B2-8788-BD3E-15AC6D5C1257}</ProjectGuid>
+    <ProjectGuid>{634F0A9F-AF19-2ECD-7B23-5D5A06F1D33A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -106,7 +106,9 @@
      <Compile Include="Assets\Scripts\Tools\InteractionButton.cs" />
      <Compile Include="Assets\Scripts\Tools\InteractionManager.cs" />
      <Compile Include="Assets\Scripts\Tools\InventoryItem.cs" />
+     <Compile Include="Assets\Scripts\Tools\InventoryItemSummary.cs" />
      <Compile Include="Assets\Scripts\Tools\InventoryManager.cs" />
+     <Compile Include="Assets\Scripts\Tools\InventoryReport.cs" />
      <Compile Include="Assets\Scripts\Tools\InventorySlot.cs" />
      <Compile Include="Assets\Scripts\Tools\NoahMove.cs" />
      <Compile Include="Assets\Scripts\Tools\NoahNavPlane.cs" />
@@ -126,6 +128,7 @@
      <Compile Include="Assets\Scripts\Util\DataTreeUtil.cs" />
      <Compile Include="Assets\Scripts\Util\DataUtil.cs" />
      <Compile Include="Assets\Scripts\Util\DebuggingUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\DictionaryUtil.cs" />
      <Compile Include="Assets\Scripts\Util\FileUtil.cs" />
      <Compile Include="Assets\Scripts\Util\ListUtil.cs" />
      <Compile Include="Assets\Scripts\Util\PSEventType.cs" />
@@ -145,6 +148,7 @@
      <Compile Include="Assets\SplashStart.cs" />
      <None Include="Assets\Scripts\Data\ItemDatabase\README.txt" />
      <None Include="Assets\Resources\Text\cutscene_tutorial.xml" />
+     <None Include="Assets\Resources\Text\worldobject_lantern.xml" />
      <None Include="Assets\Scripts\Visual\README.txt" />
      <None Include="Assets\Resources\Text\OLD\TestFile.xml" />
      <None Include="Assets\Resources\Text\README.txt" />
@@ -179,12 +183,10 @@
      <None Include="Assets\Resources\Text\item_paint.xml" />
      <None Include="Assets\Resources\Text\OLD\MergeList.xml" />
      <None Include="Assets\Art\3D\README.txt" />
-     <None Include="Assets\Resources\Text\ink_puddle.xml" />
      <None Include="Assets\Scenes\README.txt" />
      <None Include="Assets\Resources\Text\OLD\GUIDE.xml" />
      <None Include="Assets\Scripts\Audio\README.txt" />
      <None Include="Assets\Resources\Audio\README.txt" />
-     <None Include="Assets\Resources\Text\item_bottle.xml" />
      <None Include="Assets\Resources\Text\character_oj.xml" />
      <None Include="Assets\Resources\Text\item_mop_handle.xml" />
      <None Include="Assets\Resources\Text\OLD\SampleMergeList.xml" />
@@ -197,7 +199,6 @@
      <None Include="Assets\Resources\Text\item_orange.xml" />
      <None Include="Assets\Art\README.txt" />
      <None Include="Assets\Scripts\Util\README.txt" />
-     <None Include="Assets\Resources\Text\item_door.xml" />
      <None Include="Assets\Resources\Text\item_hook.xml" />
      <None Include="Assets\Art\2D\Puzzle1Placeholders\Puzzle1.xml" />
      <None Include="Assets\Scenes\Development\README.txt" />
@@ -205,7 +206,6 @@
      <None Include="Assets\Art\2D\Puzzle1Placeholders\PlaceholderPeteIdle.xml" />
      <None Include="Assets\Prefabs\README.txt" />
      <None Include="Assets\Art\3D\Animation\README.txt" />
-     <None Include="Assets\Resources\Visual\README.txt" />
      <None Include="Assets\Resources\Text\item_mop_head.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -214,7 +214,7 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="LitJson">
- <HintPath>/Users/kayani/Desktop/KayaGame/Assets/Scripts/Analytics/LitJson.dll</HintPath>
+ <HintPath>/Users/kayani/Desktop/cs327-bestmobilegameever/Assets/Scripts/Analytics/LitJson.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
