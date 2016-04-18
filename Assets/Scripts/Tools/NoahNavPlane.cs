@@ -12,7 +12,6 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 	// Use this for initialization
 	void Start () {
 		Player = GameManager.PlayerCharacter.GetComponent<NavMeshAgent>();
-		Debug.Log ("Is the fucking player transform.localScale null? " + Player.transform.localScale.ToString()); 
 		speechBubble = Player.GetComponentInChildren<SpeechBubble>();
 		//Player = GameObject.Find ("Sadie").GetComponent<NavMeshAgent>();
 	}
@@ -25,13 +24,12 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 	void OnMouseUp(){
 		//Debug.Log ("Mouse UP");
 	}
+	//at first sadie is facing the left
 	public void Flip(){ //Flip player character
-		Debug.Log("Player.transform.localScale "+ Player.transform);
 		flipped = !flipped;
-		Debug.Log ("Player.transform.localScale.x * -1 " + Player.transform.localScale.x * -1);
-		Debug.Log ("Player.transform.localScale.y " + Player.transform.localScale.y);
-		Debug.Log ("Player.transform.localScale.z " + Player.transform.localScale.z); 
-
+		Player = GameManager.PlayerCharacter.GetComponent<NavMeshAgent>();
+		speechBubble = Player.GetComponentInChildren<SpeechBubble>();
+	
 		Player.transform.localScale = new Vector3 (Player.transform.localScale.x * -1, Player.transform.localScale.y, Player.transform.localScale.z);
 		speechBubble.transform.localScale = new Vector3(speechBubble.transform.localScale.x * -1, speechBubble.transform.localScale.y, speechBubble.transform.localScale.z);
 	}

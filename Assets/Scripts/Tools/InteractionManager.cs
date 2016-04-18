@@ -256,9 +256,9 @@ public class InteractionManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject textPanel = null;
 	[SerializeField]
-	private GameObject leftImage = null;
+	public GameObject leftImage = null;
 	[SerializeField]
-	private GameObject rightImage = null;
+	public GameObject rightImage = null;
 	[SerializeField]
 	private GameObject dimBackground=null;
 
@@ -399,18 +399,15 @@ public class InteractionManager : MonoBehaviour {
 			if (!isLeft (interactor) && GameObject.Find ("Floor") != null  && GameObject.Find ("Floor").GetComponent<NoahNavPlane> ().flipped == true) {
 				GameObject.Find ("Floor").GetComponent<NoahNavPlane> ().Flip ();
 			}
-			/**	Debug.Log ("on the left? " + isLeft (interactor));
-			Debug.Log ("Kaya: "+ GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped);
-			Debug.Log ("Can we find NavFloor? " + GameObject.Find ("NavFloor"));
-			GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().Flip (); **/
-			if (isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == false) {
-				
+		
+			if (isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == true) {
+
 				GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().Flip ();
 			}
 
-			if (!isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == true) {
+			if (!isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == false) {
 				GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().Flip ();
-			}   
+			}
 			foreach (Interaction interaction in closeEnough) {
 				if (interaction.HasText) {
 					DisplayInteraction (interactor, interaction);
@@ -440,6 +437,16 @@ public class InteractionManager : MonoBehaviour {
 		}
 	}
 
+	public static bool isLeft(Interactable interactor){ //left has smaller x value
+		if (interactor.transform.position.x < GameManager.PlayerCharacter.transform.position.x) {
+			return true;
+		}
+		return false;
+
+
+	}
+
+
 	static Vector3 getPositionOfInteractable (Interactable interactable) {
 		SpecialActions specialActionsOfInteractable = interactable.GetComponent<SpecialActions>();
 
@@ -448,14 +455,6 @@ public class InteractionManager : MonoBehaviour {
 		} else {
 			return specialActionsOfInteractable.GetPosition();
 		}
-	}
-	public static bool isLeft(Interactable interactor){ //left has smaller x value
-		if (interactor.transform.position.x < GameManager.PlayerCharacter.transform.position.x) {
-			return true;
-		}
-		return false;
-
-
 	}
 
 	public static void HandleInteraction(Interactable interactor, Interaction interaction){

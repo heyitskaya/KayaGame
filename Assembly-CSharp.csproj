@@ -54,7 +54,7 @@
      <Compile Include="Assets\Scripts\Audio\AudioLoader.cs" />
      <Compile Include="Assets\Scripts\Controller\ConversationDisplayController.cs" />
      <Compile Include="Assets\Scripts\Controller\CreditsController.cs" />
-     <Compile Include="Assets\Scripts\Controller\DevelopmentSceneListController.cs" />
+     <Compile Include="Assets\Scripts\Controller\DemoEndController.cs" />
      <Compile Include="Assets\Scripts\Controller\InputController.cs" />
      <Compile Include="Assets\Scripts\Controller\MainMenuController.cs" />
      <Compile Include="Assets\Scripts\Controller\OnTouchCharacter.cs" />
