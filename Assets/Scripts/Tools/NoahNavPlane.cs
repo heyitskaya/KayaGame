@@ -24,7 +24,7 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 	void OnMouseUp(){
 		
 	}
-	//at first sadie is facing the left
+	
 	public void Flip(){ //Flip player character
 		flipped = !flipped;
 		Player = GameManager.PlayerCharacter.GetComponent<NavMeshAgent>();
