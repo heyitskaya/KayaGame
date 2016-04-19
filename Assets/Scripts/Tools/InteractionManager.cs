@@ -395,17 +395,17 @@ public class InteractionManager : MonoBehaviour {
 				GameObject.Find("Floor").GetComponent<NoahNavPlane>().Flip();
 			}
 
-			//interactor is on the right and sadie is facing left
-			if (!isLeft (interactor) && GameObject.Find ("Floor") != null  && GameObject.Find ("Floor").GetComponent<NoahNavPlane> ().flipped == true) {
+
+			else if (!isLeft (interactor) && GameObject.Find ("Floor") != null  && GameObject.Find ("Floor").GetComponent<NoahNavPlane> ().flipped == true) {
 				GameObject.Find ("Floor").GetComponent<NoahNavPlane> ().Flip ();
 			}
 		
-			if (isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == true) {
+			else if (isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == true) {
 
 				GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().Flip ();
 			}
 
-			if (!isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == false) {
+			else if (!isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == false) {
 				GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().Flip ();
 			}
 			foreach (Interaction interaction in closeEnough) {
