@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 
 public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 
+//yangla likes to say lol
 	NavMeshAgent Player;
 
 	public bool flipped = false;
@@ -43,7 +44,7 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 			NavMeshPath path = new NavMeshPath ();
 			Vector3 destination = eventData.pointerCurrentRaycast.worldPosition;
 			Player.GetComponent<NavMeshAgent> ().CalculatePath (destination, path);
-		//please work
+	
 			if (destination.x > Player.transform.position.x) {
 				if (flipped) {
 					Flip ();
