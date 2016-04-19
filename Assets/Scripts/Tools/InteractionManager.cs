@@ -391,23 +391,22 @@ public class InteractionManager : MonoBehaviour {
 
 		if (tooFar.Count == 0) {
 			if (isLeft(interactor) && GameObject.Find("Floor")!=null && GameObject.Find("Floor").GetComponent<NoahNavPlane>().flipped==false) { 
-
 				GameObject.Find("Floor").GetComponent<NoahNavPlane>().Flip();
 			}
 
 
-			else if (!isLeft (interactor) && GameObject.Find ("Floor") != null  && GameObject.Find ("Floor").GetComponent<NoahNavPlane> ().flipped == true) {
+			if (!isLeft (interactor) && GameObject.Find ("Floor") != null  && GameObject.Find ("Floor").GetComponent<NoahNavPlane> ().flipped == true) {
 				GameObject.Find ("Floor").GetComponent<NoahNavPlane> ().Flip ();
 			}
 		
-			else if (isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == true) {
+			if (isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == true) {
 
 				GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().Flip ();
 			}
 
-			else if (!isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == false) {
+			if (!isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == false) {
 				GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().Flip ();
-			}
+			} 
 			foreach (Interaction interaction in closeEnough) {
 				if (interaction.HasText) {
 					DisplayInteraction (interactor, interaction);
