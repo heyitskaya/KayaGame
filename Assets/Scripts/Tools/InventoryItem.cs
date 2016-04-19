@@ -73,10 +73,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
 	public void OnDrag (PointerEventData eventData)
 	{
-		Debug.Log ("We are in the OnDrag method"); 
-		Debug.Log ("transform.position " + transform.position.ToString());
-		transform.position = Input.mousePosition+new Vector3(0,20,0); //lol I did it 
-		Debug.Log ("new position " + transform.position.ToString ());
+		transform.position = Input.mousePosition+new Vector3(0,15,0);
 	} 
 
 	#endregion
