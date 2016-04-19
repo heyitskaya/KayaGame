@@ -22,7 +22,7 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 	}
 
 	void OnMouseUp(){
-		//Debug.Log ("Mouse UP");
+		
 	}
 	//at first sadie is facing the left
 	public void Flip(){ //Flip player character
