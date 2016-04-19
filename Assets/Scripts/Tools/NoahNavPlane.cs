@@ -34,7 +34,7 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 		speechBubble.transform.localScale = new Vector3(speechBubble.transform.localScale.x * -1, speechBubble.transform.localScale.y, speechBubble.transform.localScale.z);
 	}
 
-/**	public void OnPointerClick (PointerEventData eventData)
+	public void OnPointerClick (PointerEventData eventData)
 	{
 		if (!UIManager._instance.paused){
 			#if DEBUG
@@ -57,5 +57,5 @@ public class NoahNavPlane : MonoBehaviour, IPointerClickHandler {
 			Player.SetDestination (destination);
 			
 		}
-	} **/
+	} 
 }
