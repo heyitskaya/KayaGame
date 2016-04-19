@@ -390,8 +390,8 @@ public class InteractionManager : MonoBehaviour {
 		List<Interaction> closeEnough = validInteractions.Except (tooFar).ToList ();
 
 		if (tooFar.Count == 0) {
-			if (isLeft(interactor) && GameObject.Find("Floor")!=null && GameObject.Find("Floor").GetComponent<NoahNavPlane>().flipped==false) { //lol, this worked
-				//when interactor is on the left and sadie is facing right
+			if (isLeft(interactor) && GameObject.Find("Floor")!=null && GameObject.Find("Floor").GetComponent<NoahNavPlane>().flipped==false) { 
+
 				GameObject.Find("Floor").GetComponent<NoahNavPlane>().Flip();
 			}
 
