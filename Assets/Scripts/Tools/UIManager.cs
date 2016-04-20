@@ -8,14 +8,19 @@ public class UIManager : MonoBehaviour {
     public static UIManager _instance = null;
     public bool CanInteract = true;
 	public bool paused = false;
+
     [SerializeField]
 	GameObject tapToContinue = null;
+	public AudioController audioController = null;
 
 	public GameObject DimBackground;
 	public GameObject HelpTextBox;
+	public GameObject audioControllerWrap;
 
+	public float MinTapDelay = 0.5f;
 
 	void OnLevelWasLoaded (int level) {
+		audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
 		if (PSSceneUtil.InGame(level)) {
 			ShowInventoryPanel();
 		} else {
@@ -52,11 +57,23 @@ public class UIManager : MonoBehaviour {
 	}
 		
 	public void Matey(){
-		EventController.Event(EventList.MATEY_BUTTON_CLICKED);
+		audioController.Matey ();
 		//Do matey sound
 	}
+
+	public void ToggleMute(){
+		audioController.ToggleFXMute ();
+		audioController.ToggleMusicMute ();
+		//Mute button
+	}
+
+	public void ClickSound() {
+		audioController.ClickSound ();
+	}
+
 	public void Pause(){
 		paused = !paused;
+		audioController.ClickSound ();
 	}
 
 	public void Quit(){
@@ -111,6 +128,12 @@ public class UIManager : MonoBehaviour {
         CanInteract = true;
         tapToContinue.GetComponent<Button> ().enabled = true;
 		tapToContinue.SetActive (false);
+	}
+
+	IEnumerator TapDelay(){
+		LockScreen ();
+		yield return new WaitForSeconds (MinTapDelay);
+		UnlockScreen();
 	}
 
 	void spawnTextBox() {

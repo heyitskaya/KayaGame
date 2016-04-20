@@ -133,6 +133,11 @@ public class Interaction {
 	public bool HasNext { get { return _next != null && _next != string.Empty; } }
 	public string iNext { get { return HasNext ? _next : null; } }
 
+	[XmlElement("Speaker")]
+	public string _speaker { private get; set; }
+	public bool HasSpeaker { get { return _speaker != null && _speaker != string.Empty; } }
+	public string iSpeaker { get { return HasSpeaker ? _speaker : null; } }
+
 	[XmlElement("NextInteractor")]
 	public string _nextInteractor { private get; set; }
 	public bool NextNotSelf { get { return _nextInteractor != null && _nextInteractor != string.Empty; } }
@@ -273,11 +278,15 @@ public class InteractionManager : MonoBehaviour {
 			if (interaction.HasImage2) {
 				ShowRightImage (interaction.iImage2);
 			}
+			if (interaction.HasSpeaker) {
+				transform.FindChild ("Speaker").GetComponent<Text> ().text = interaction.iSpeaker;
+			}
 			switch (interaction.iTextType) {
 			case TextType.Monologue:
 				newText = Instantiate (monologueDisplay) as GameObject;
 				newText.transform.SetParent (textPanel.transform);
 				newText.GetComponentInChildren<Text> ().text = interaction.iText;
+				Debug.Log("monologue");
 				break;
 			case TextType.Option:
 				newText = Instantiate (optionDisplay) as GameObject;
@@ -286,6 +295,7 @@ public class InteractionManager : MonoBehaviour {
 				newText.GetComponent<InteractionButton> ().interactor = interactor;
 				newText.GetComponent<InteractionButton> ().interaction = interaction;
 				newText.transform.localScale = Vector3.one;
+				Debug.Log("option");
 				break;
 			default:
 				#if (DEBUG)
@@ -312,6 +322,7 @@ public class InteractionManager : MonoBehaviour {
 		
 	void ClearTextPanel(){
 		List<Transform> textObjects = textPanel.GetComponentsInChildren<Transform> ().ToList ();
+		transform.FindChild ("Speaker").GetComponent<Text> ().text = "";
 		foreach (Transform t in textObjects) {
 			if (textPanel.transform != t) {
 				Destroy (t.gameObject);
@@ -390,6 +401,7 @@ public class InteractionManager : MonoBehaviour {
 		List<Interaction> closeEnough = validInteractions.Except (tooFar).ToList ();
 
 		if (tooFar.Count == 0) {
+			
 			if (isLeft(interactor) && GameObject.Find("Floor")!=null && GameObject.Find("Floor").GetComponent<NoahNavPlane>().flipped==false) { 
 				GameObject.Find("Floor").GetComponent<NoahNavPlane>().Flip();
 			}
@@ -416,9 +428,24 @@ public class InteractionManager : MonoBehaviour {
 			}
 			List<Interaction> displayed = closeEnough.Where (i => i.HasText && i.iTextType != TextType.Floating).ToList();
 			if(displayed.Count () == 1) {
+				
+
+				// Set the interaction button to the proper reference
+
+
+
+				//GameObject.Find ("Arrow").SetActive (false);
 				GameManager.UIManager.EnableTapToContinue (interactor, displayed.Single ());
 			}
-		} else {
+		} else { //when there are multiple dialogue options
+			Debug.Log("Multiple options");
+			GameObject interactionButton = null;
+			interactionButton.transform.GetChild (0).gameObject.SetActive (true);
+
+
+
+
+
 			if (!forceSuppressMovement) {
                 Vector2 playerPos = new Vector2(GameManager.PlayerCharacter.transform.position.x, GameManager.PlayerCharacter.transform.position.z);
                 Vector2 targetPos = new Vector2(getPositionOfInteractable(interactor).x, getPositionOfInteractable(interactor).z);
@@ -474,7 +501,8 @@ public class InteractionManager : MonoBehaviour {
 				GameManager.InteractionManager.AddInteractionText (interactor, interaction);
 			}
 		}
-
+		GameManager.UIManager.StopAllCoroutines ();
+		GameManager.UIManager.StartCoroutine ("TapDelay");
 		CheckForTextBoxText(interaction);
 	}
 

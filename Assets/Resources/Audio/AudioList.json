@@ -1013,7 +1013,7 @@
 			“EventNames”:["EnterTutorial"],
 			"StopEventNames":["ExitTutorial"],
 			“Loop”:true,
-			“Type”: "VO",
+			“Type”: "FX",
 			“Channel”:3,
 			"Volume": 60
 		},
@@ -1097,7 +1097,7 @@
 			“Type”: "VO",
 			“Channel”:2,
 			"Volume": 100
-		}
+		},
 		{
 			“FileName”:"Orange_Throw",
 			“EventNames”:["Orangethrow"],

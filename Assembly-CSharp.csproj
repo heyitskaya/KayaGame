@@ -45,10 +45,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\OrangeGuyController.cs" />
      <Compile Include="Assets\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Analytics\Mixpanel.cs" />
      <Compile Include="Assets\Scripts\Analytics\MixpanelController.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
+     <Compile Include="Assets\Scripts\Audio\AudioControllerWrap.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioFile.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioList.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioLoader.cs" />
@@ -118,6 +120,7 @@
      <Compile Include="Assets\Scripts\Tools\SpecialActions\SpecialActions_Bottle.cs" />
      <Compile Include="Assets\Scripts\Tools\SpecialActions\SpecialActions_Cutscene_Tutorial.cs" />
      <Compile Include="Assets\Scripts\Tools\SpecialActions\SpecialActions_Rigger.cs" />
+     <Compile Include="Assets\Scripts\Tools\SpecialActions\SpecialActions_Speech.cs" />
      <Compile Include="Assets\Scripts\Tools\SpecialActions\SpecialActions_Swabbie.cs" />
      <Compile Include="Assets\Scripts\Tools\SpeechBubble.cs" />
      <Compile Include="Assets\Scripts\Tools\UIManager.cs" />
@@ -163,6 +166,7 @@
      <None Include="Assets\Resources\Text\worldobject_lifeboat.xml" />
      <None Include="Assets\Resources\Text\item_hook_dirty.xml" />
      <None Include="Assets\Scripts\Data\README.txt" />
+     <None Include="Assets\Art\2D\Puzzle0 (Tutorial)\Splat.xml" />
      <None Include="Assets\Resources\Text\CharacterList.xml" />
      <None Include="Assets\Resources\Text\OLD\mop.xml" />
      <None Include="Assets\Resources\Text\item_rag.xml" />
