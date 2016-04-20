@@ -35,8 +35,18 @@ public class AudioController : MonoBehaviour {
 	RandomizedQueue<AudioFile> _sweeteners;
 	RandomizedQueue<AudioFile> _GUIclicks;
 	RandomizedQueue<AudioFile> _matey;
+	RandomizedQueue<AudioFile> _ambienceMain;
+	RandomizedQueue<AudioFile> _ambienceTutorial;
+	RandomizedQueue<AudioFile> _swabbie;
+	RandomizedQueue<AudioFile> _firstMate;
+	RandomizedQueue<AudioFile> _quarterMaster;
+	RandomizedQueue<AudioFile> _rigger;
+	RandomizedQueue<AudioFile> _swabbieSpeech;
 	IEnumerator _swellCoroutine;
 	IEnumerator _sweetenerCoroutine;
+	IEnumerator _ambienceTutorialCoroutine;
+	IEnumerator _ambienceMainCoroutine;
+	IEnumerator _swabbieCoroutine;
 
 	// Set to false to halt active coroutines
 	bool _coroutinesActive = true;
@@ -44,13 +54,12 @@ public class AudioController : MonoBehaviour {
 	public float ShortestSweetenerPlayFrequenecy = 10;
 	public float LongestSweetenerPlayFrequenecy = 25;
 
+
 	void Awake () {
 		Init();
 	}
-
-	// Use this for initialization
+		
 	void Start () {
-		OnLevelWasLoaded(Application.loadedLevel);
 	}
 
 	void OnDestroy () {
@@ -63,9 +72,13 @@ public class AudioController : MonoBehaviour {
 		if ((PSScene)level == PSScene.MainMenu) {
 			StopTrackCycling();
 			PlayMainMenuMusic();
+			StopCoroutine (_ambienceTutorialCoroutine);
+			StopCoroutine (_ambienceMainCoroutine);
 		} else if ((PSScene)level == PSScene.MainGame) {
 			StopMainMenuMusic();
+			StopTrackCycling();
 			StartTrackCycling();
+			StopCoroutine (_ambienceTutorialCoroutine);
 		}else if ((PSScene)level == PSScene.TutorialScene) {
 			StopMainMenuMusic();
 			StartTrackCycling();
@@ -345,15 +358,39 @@ public class AudioController : MonoBehaviour {
 			_swells
 		);
 
+		_ambienceMainCoroutine = cycleTracksContinuous (
+			_ambienceMain
+		);
+
+		_ambienceTutorialCoroutine = cycleTracksContinuous (
+			_ambienceTutorial
+		);
+
 		startCoroutines(
 			_sweetenerCoroutine,
 			_swellCoroutine
 		);
+
+		_swabbieCoroutine = cycleTracksFrequenecyRange(
+			_swabbie,
+			ShortestSweetenerPlayFrequenecy,
+			LongestSweetenerPlayFrequenecy
+		);
+
+		if ((PSScene)Application.loadedLevel == PSScene.MainGame) {
+			startCoroutines(_ambienceMainCoroutine,_swabbieCoroutine);
+		}
+		if ((PSScene)Application.loadedLevel == PSScene.TutorialScene) {
+			startCoroutines(_ambienceTutorialCoroutine);
+		}
 	}
 
 	public void StopTrackCycling () {
 		StopCoroutine(_sweetenerCoroutine);
 		StopCoroutine(_swellCoroutine);
+		StopCoroutine(_ambienceMainCoroutine);
+		StopCoroutine(_ambienceTutorialCoroutine);
+		StopCoroutine(_swabbieCoroutine);
 	}
 
 	public void ClickSound () {
@@ -364,11 +401,41 @@ public class AudioController : MonoBehaviour {
 		Play (_matey.Cycle ());
 	}
 
+	public void VoiceEffect (string name) {
+		switch (name) {
+		case "FirstMateSpeech":
+			Play (_firstMate.Cycle ());
+			break;
+		case "QuarterMasterSpeech":
+			Play (_quarterMaster.Cycle ());
+			break;
+		case "SwabbieSpeech":
+			Play (_swabbieSpeech.Cycle ());
+			break;
+		case "RiggerSpeech":
+			Play (_rigger.Cycle ());
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void SwabbieRun () {
+		StopCoroutine (_swabbieCoroutine);
+	}
+
 	void initCyclingAudio () {
 		_sweeteners = new RandomizedQueue<AudioFile>();
 		_swells = new RandomizedQueue<AudioFile>();
 		_GUIclicks = new RandomizedQueue<AudioFile>();
 		_matey = new RandomizedQueue<AudioFile>();
+		_ambienceMain = new RandomizedQueue<AudioFile>();
+		_ambienceTutorial = new RandomizedQueue<AudioFile>();
+		_swabbie = new RandomizedQueue<AudioFile>();
+		_firstMate = new RandomizedQueue<AudioFile>();
+		_swabbieSpeech = new RandomizedQueue<AudioFile>();
+		_quarterMaster = new RandomizedQueue<AudioFile>();
+		_rigger = new RandomizedQueue<AudioFile>();
 		// Init Queue's with sound files
 		List<AudioFile> list = new List<AudioFile>();
 		// Get all deck music
@@ -389,6 +456,40 @@ public class AudioController : MonoBehaviour {
 		playEvents.TryGetValue ("MateyButton",out list);
 		foreach (AudioFile track in list) {
 			_matey.Enqueue (track);
+		}
+		// Get ambience
+		playEvents.TryGetValue ("EnterTutorial",out list);
+		foreach (AudioFile track in list) {
+			_ambienceTutorial.Enqueue (track);
+		}
+		playEvents.TryGetValue ("enterscene",out list);
+		foreach (AudioFile track in list) {
+			_ambienceMain.Enqueue (track);
+		}
+		// Get swabbie mopping sound
+		playEvents.TryGetValue ("MopOnFloor",out list);
+		foreach (AudioFile track in list) {
+			_swabbie.Enqueue (track);
+		}
+		// Speaking voice effects
+		playEvents.TryGetValue ("FirstMateSpeech",out list);
+		foreach (AudioFile track in list) {
+			_firstMate.Enqueue (track);
+		}
+
+		playEvents.TryGetValue ("SwabbieTalk",out list);
+		foreach (AudioFile track in list) {
+			_swabbieSpeech.Enqueue (track);
+		}
+
+		playEvents.TryGetValue ("RiggerTalk",out list);
+		foreach (AudioFile track in list) {
+			_rigger.Enqueue (track);
+		}
+
+		playEvents.TryGetValue ("QuartermasterTalk",out list);
+		foreach (AudioFile track in list) {
+			_quarterMaster.Enqueue (track);
 		}
 	}
 

@@ -443,6 +443,9 @@ public class InteractionManager : MonoBehaviour {
 			interactionButton.transform.GetChild (0).gameObject.SetActive (true);
 
 
+
+
+
 			if (!forceSuppressMovement) {
                 Vector2 playerPos = new Vector2(GameManager.PlayerCharacter.transform.position.x, GameManager.PlayerCharacter.transform.position.z);
                 Vector2 targetPos = new Vector2(getPositionOfInteractable(interactor).x, getPositionOfInteractable(interactor).z);

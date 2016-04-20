@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{634F0A9F-AF19-2ECD-7B23-5D5A06F1D33A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_1;UNITY_5_3;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\OrangeGuyController.cs" />
+     <Compile Include="Assets\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Analytics\Mixpanel.cs" />
+     <Compile Include="Assets\Scripts\Analytics\MixpanelController.cs" />
+     <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
+     <Compile Include="Assets\Scripts\Audio\AudioControllerWrap.cs" />
+     <Compile Include="Assets\Scripts\Audio\AudioFile.cs" />
+     <Compile Include="Assets\Scripts\Audio\AudioList.cs" />
+     <Compile Include="Assets\Scripts\Audio\AudioLoader.cs" />
+     <Compile Include="Assets\Scripts\Controller\ConversationDisplayController.cs" />
+     <Compile Include="Assets\Scripts\Controller\CreditsController.cs" />
+     <Compile Include="Assets\Scripts\Controller\DemoEndController.cs" />
+     <Compile Include="Assets\Scripts\Controller\InputController.cs" />
+     <Compile Include="Assets\Scripts\Controller\MainMenuController.cs" />
+     <Compile Include="Assets\Scripts\Controller\OnTouchCharacter.cs" />
+     <Compile Include="Assets\Scripts\Controller\OnTouchGround.cs" />
+     <Compile Include="Assets\Scripts\Controller\OptionsMenuController.cs" />
+     <Compile Include="Assets\Scripts\Controller\OrangeThrowing.cs" />
+     <Compile Include="Assets\Scripts\Controller\PathFinding.cs" />
+     <Compile Include="Assets\Scripts\Controller\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\Controller\RayPathFinding.cs" />
+     <Compile Include="Assets\Scripts\Controller\ResponseDisplayController.cs" />
+     <Compile Include="Assets\Scripts\Controller\SceneController.cs" />
+     <Compile Include="Assets\Scripts\Controller\SimpleMovement.cs" />
+     <Compile Include="Assets\Scripts\Controller\WorldController.cs" />
+     <Compile Include="Assets\Scripts\Data\CharacterClass.cs" />
+     <Compile Include="Assets\Scripts\Data\Conversation.cs" />
+     <Compile Include="Assets\Scripts\Data\ConversationNode.cs" />
+     <Compile Include="Assets\Scripts\Data\ConversationXMLFileList.cs" />
+     <Compile Include="Assets\Scripts\Data\Credit.cs" />
+     <Compile Include="Assets\Scripts\Data\CreditGroup.cs" />
+     <Compile Include="Assets\Scripts\Data\DataNode.cs" />
+     <Compile Include="Assets\Scripts\Data\DataProcessing\XMLReader.cs" />
+     <Compile Include="Assets\Scripts\Data\DataTree.cs" />
+     <Compile Include="Assets\Scripts\Data\DirectedGraph.cs" />
+     <Compile Include="Assets\Scripts\Data\DirectedGraphNode.cs" />
+     <Compile Include="Assets\Scripts\Data\IConversation.cs" />
+     <Compile Include="Assets\Scripts\Data\IConversationNode.cs" />
+     <Compile Include="Assets\Scripts\Data\ItemDatabase\Item.cs" />
+     <Compile Include="Assets\Scripts\Data\ItemDatabase\ItemDatabase.cs" />
+     <Compile Include="Assets\Scripts\Data\ItemDatabase\ItemMergeList.cs" />
+     <Compile Include="Assets\Scripts\Data\ItemDatabase\Recipe.cs" />
+     <Compile Include="Assets\Scripts\Data\ProgressTracker.cs" />
+     <Compile Include="Assets\Scripts\Data\RandomizedQueue.cs" />
+     <Compile Include="Assets\Scripts\Data\SaveLoad.cs" />
+     <Compile Include="Assets\Scripts\Data\TreeToGraphConverter.cs" />
+     <Compile Include="Assets\Scripts\Debug\IsaiahTestingGround.cs" />
+     <Compile Include="Assets\Scripts\Enum\AudioActionType.cs" />
+     <Compile Include="Assets\Scripts\Enum\AudioType.cs" />
+     <Compile Include="Assets\Scripts\Enum\InteractionID.cs" />
+     <Compile Include="Assets\Scripts\Enum\PSScene.cs" />
+     <Compile Include="Assets\Scripts\Enum\ScreenPosition.cs" />
+     <Compile Include="Assets\Scripts\Event\EventController.cs" />
+     <Compile Include="Assets\Scripts\Event\EventList.cs" />
+     <Compile Include="Assets\Scripts\Event\InteractionHandler.cs" />
+     <Compile Include="Assets\Scripts\Tools\CameraFollower.cs" />
+     <Compile Include="Assets\Scripts\Tools\Fader.cs" />
+     <Compile Include="Assets\Scripts\Tools\FloatingText.cs" />
+     <Compile Include="Assets\Scripts\Tools\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Tools\Interactable.cs" />
+     <Compile Include="Assets\Scripts\Tools\InteractionButton.cs" />
+     <Compile Include="Assets\Scripts\Tools\InteractionManager.cs" />
+     <Compile Include="Assets\Scripts\Tools\InventoryItem.cs" />
+     <Compile Include="Assets\Scripts\Tools\InventoryItemSummary.cs" />
+     <Compile Include="Assets\Scripts\Tools\InventoryManager.cs" />
+     <Compile Include="Assets\Scripts\Tools\InventoryReport.cs" />
+     <Compile Include="Assets\Scripts\Tools\InventorySlot.cs" />
+     <Compile Include="Assets\Scripts\Tools\NoahMove.cs" />
+     <Compile Include="Assets\Scripts\Tools\NoahNavPlane.cs" />
+     <Compile Include="Assets\Scripts\Tools\RayCastTest.cs" />
+     <Compile Include="Assets\Scripts\Tools\SpecialActions\SpecialAction_PopUp.cs" />
+     <Compile Include="Assets\Scripts\Tools\SpecialActions\SpecialActions.cs" />
+     <Compile Include="Assets\Scripts\Tools\SpecialActions\SpecialActions_Bottle.cs" />
+     <Compile Include="Assets\Scripts\Tools\SpecialActions\SpecialActions_Cutscene_Tutorial.cs" />
+     <Compile Include="Assets\Scripts\Tools\SpecialActions\SpecialActions_Rigger.cs" />
+     <Compile Include="Assets\Scripts\Tools\SpecialActions\SpecialActions_Speech.cs" />
+     <Compile Include="Assets\Scripts\Tools\SpecialActions\SpecialActions_Swabbie.cs" />
+     <Compile Include="Assets\Scripts\Tools\SpeechBubble.cs" />
+     <Compile Include="Assets\Scripts\Tools\UIManager.cs" />
+     <Compile Include="Assets\Scripts\Util\ArrayUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\AudioUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\CSVUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\ConversationUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\DataTreeUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\DataUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\DebuggingUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\DictionaryUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\FileUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\ListUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\PSEventType.cs" />
+     <Compile Include="Assets\Scripts\Util\PSSceneUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\PlayerPrefsUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\SettingsUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\SingletonUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\StringUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\TextAssetUtil.cs" />
+     <Compile Include="Assets\Scripts\Util\XMLUtil.cs" />
+     <Compile Include="Assets\Scripts\Visual\HelpTextBox.cs" />
+     <Compile Include="Assets\Scripts\Visual\ScreenFader.cs" />
+     <Compile Include="Assets\Scripts\Visual\TextBox.cs" />
+     <Compile Include="Assets\Scripts\Visual\TextElement.cs" />
+     <Compile Include="Assets\Scripts\Visual\VisualCreditGroup.cs" />
+     <Compile Include="Assets\Scripts\Visual\VisualResponse.cs" />
+     <Compile Include="Assets\SplashStart.cs" />
+     <None Include="Assets\Scripts\Data\ItemDatabase\README.txt" />
+     <None Include="Assets\Resources\Text\cutscene_tutorial.xml" />
+     <None Include="Assets\Resources\Text\worldobject_lantern.xml" />
+     <None Include="Assets\Scripts\Visual\README.txt" />
+     <None Include="Assets\Resources\Text\OLD\TestFile.xml" />
+     <None Include="Assets\Resources\Text\README.txt" />
+     <None Include="Assets\Scripts\Controller\README.txt" />
+     <None Include="Assets\Scripts\Debug\README.txt" />
+     <None Include="Assets\Scripts\Data\DataProcessing\README.txt" />
+     <None Include="Assets\Art\2D\Test.txt" />
+     <None Include="Assets\Resources\Text\item_poster.xml" />
+     <None Include="Assets\Resources\Text\worldobject_door.xml" />
+     <None Include="Assets\Resources\Text\item_chalk.xml" />
+     <None Include="Assets\Resources\Text\item_polehook.xml" />
+     <None Include="Assets\Resources\Text\worldobject_lifeboat.xml" />
+     <None Include="Assets\Resources\Text\item_hook_dirty.xml" />
+     <None Include="Assets\Scripts\Data\README.txt" />
+     <None Include="Assets\Art\2D\Puzzle0 (Tutorial)\Splat.xml" />
+     <None Include="Assets\Resources\Text\CharacterList.xml" />
+     <None Include="Assets\Resources\Text\OLD\mop.xml" />
+     <None Include="Assets\Resources\Text\item_rag.xml" />
+     <None Include="Assets\Plugins\README.txt" />
+     <None Include="Assets\Art\2D\Puzzle1Placeholders\PlaceholderPeteMopping.xml" />
+     <None Include="Assets\Resources\Text\character_rigger.xml" />
+     <None Include="Assets\Resources\Text\OLD\SampleDialogue.xml" />
+     <None Include="Assets\Resources\Text\worldobject_chalkboard.xml" />
+     <None Include="Assets\Resources\Text\test_pete.xml" />
+     <None Include="Assets\Art\2D\UI\README.txt" />
+     <None Include="Assets\Resources\Text\character_firstmate.xml" />
+     <None Include="Assets\Scripts\README.txt" />
+     <None Include="Assets\Art\2D\README.txt" />
+     <None Include="Assets\Resources\Text\worldobject_captain_portrait.xml" />
+     <None Include="Assets\Resources\Text\item_rope.xml" />
+     <None Include="Assets\Resources\Text\worldobject_bottle.xml" />
+     <None Include="Assets\Resources\README.txt" />
+     <None Include="Assets\Resources\Text\item_paint.xml" />
+     <None Include="Assets\Resources\Text\OLD\MergeList.xml" />
+     <None Include="Assets\Art\3D\README.txt" />
+     <None Include="Assets\Scenes\README.txt" />
+     <None Include="Assets\Resources\Text\OLD\GUIDE.xml" />
+     <None Include="Assets\Scripts\Audio\README.txt" />
+     <None Include="Assets\Resources\Audio\README.txt" />
+     <None Include="Assets\Resources\Text\character_oj.xml" />
+     <None Include="Assets\Resources\Text\item_mop_handle.xml" />
+     <None Include="Assets\Resources\Text\OLD\SampleMergeList.xml" />
+     <None Include="Assets\Resources\Text\character_sadie.xml" />
+     <None Include="Assets\Resources\Text\OLD\SampleItemsList.xml" />
+     <None Include="Assets\Resources\Text\character_secondmate.xml" />
+     <None Include="Assets\Resources\Text\OLD\ItemsList.xml" />
+     <None Include="Assets\Scripts\Enum\README.txt" />
+     <None Include="Assets\Resources\Text\worldobject_ink_puddle.xml" />
+     <None Include="Assets\Resources\Text\item_orange.xml" />
+     <None Include="Assets\Art\README.txt" />
+     <None Include="Assets\Scripts\Util\README.txt" />
+     <None Include="Assets\Resources\Text\item_hook.xml" />
+     <None Include="Assets\Art\2D\Puzzle1Placeholders\Puzzle1.xml" />
+     <None Include="Assets\Scenes\Development\README.txt" />
+     <None Include="Assets\Resources\Text\character_swabbie.xml" />
+     <None Include="Assets\Art\2D\Puzzle1Placeholders\PlaceholderPeteIdle.xml" />
+     <None Include="Assets\Prefabs\README.txt" />
+     <None Include="Assets\Art\3D\Animation\README.txt" />
+     <None Include="Assets\Resources\Text\item_mop_head.xml" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="LitJson">
+ <HintPath>/Users/kayani/Desktop/cs327-bestmobilegameever/Assets/Scripts/Analytics/LitJson.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
