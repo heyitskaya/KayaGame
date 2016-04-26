@@ -380,7 +380,8 @@ public class InteractionManager : MonoBehaviour {
 			dropped.DoSpecialActions (new List<string> { "ReturnSelected" });
 		}
 	}
-
+	//true left
+	//false right
 	public static void HandleInteractionList(Interactable interactor, List<Interaction> interactionList, bool forceSuppressMovement = false, bool forceIgnoreDistance = false){
 
 		List<Interaction> validInteractions = interactionList.FindAll (i => i.IsValid);
@@ -395,7 +396,7 @@ public class InteractionManager : MonoBehaviour {
 			tooFar = new List<Interaction>();
 		} else {
 			tooFar = validInteractions.FindAll (i => interactionDistance > i.iMaxDist && !i.IgnoreDistance && i.iType != InteractionType.Derivative);
-            if (interactor.Debugging) Debug.Log(ListUtil.ToString(tooFar));
+            if (interactor.Debugging) Debug.Log(ListUtil.ToString(tooFar)) ;
 		}
 		List<Interaction> closeEnough = validInteractions.Except (tooFar).ToList ();
 
@@ -403,29 +404,32 @@ public class InteractionManager : MonoBehaviour {
 
 			if (isLeft (interactor) && interactor.gameObject.name!="Sadie" && !isFacing(interactor) && interactor.gameObject.tag!="DontFlip"  )
 			{
-				
-				if(interactor.GetComponent<Interactable>().flipped ){ 
+				//interactor sadie 	
+				if(interactor.GetComponent<Interactable>().flipped ){ //interactor is facing left
 					
-					interactor.GetComponent<Interactable> ().Flip ();
+					interactor.GetComponent<Interactable> ().Flip (); //flip interactor to the right
 				}
 				if (GameObject.Find ("Floor") != null && GameObject.Find ("Floor").GetComponent<NoahNavPlane> ().flipped ==false && !isFacing(interactor)) {
-					//flip Sadie
-					GameObject.Find("Floor").GetComponent<NoahNavPlane>().Flip();
+					//when sadie is facing right
+					Debug.Log("2");
+					GameObject.Find("Floor").GetComponent<NoahNavPlane>().Flip(); //flip her to left
 
 				}
 			}
 			if (!isLeft (interactor) && interactor.gameObject.name!="Sadie" && !isFacing(interactor)  && interactor.gameObject.tag!="DontFlip") 
-			{
+			{ //sadie interactor
 				
 				if (!interactor.GetComponent<Interactable> ().flipped) { //if interactor is facing right
-					
-					interactor.GetComponent<Interactable> ().Flip ();
+					Debug.Log("3");
+					interactor.GetComponent<Interactable> ().Flip (); //flip interactor to face left
 				}
 				if (GameObject.Find ("Floor") != null && GameObject.Find ("Floor").GetComponent<NoahNavPlane> ().flipped != false && !isFacing(interactor)) {
-					//flip Sadie
-					GameObject.Find("Floor").GetComponent<NoahNavPlane>().Flip();
+					//if sadie facing right 
+
+					GameObject.Find("Floor").GetComponent<NoahNavPlane>().Flip(); 
 				}
 			}
+
 
 			if (isLeft (interactor) && GameObject.Find ("NavFloor") != null && GameObject.Find ("NavFloor").GetComponent<NoahNavPlane> ().flipped == false) {
 				
@@ -466,8 +470,8 @@ public class InteractionManager : MonoBehaviour {
                 Vector2 playerPos = new Vector2(GameManager.PlayerCharacter.transform.position.x, GameManager.PlayerCharacter.transform.position.z);
                 Vector2 targetPos = new Vector2(getPositionOfInteractable(interactor).x, getPositionOfInteractable(interactor).z);
                 targetPos += ((playerPos - targetPos).normalized * 1.5f);
-                GameManager.PlayerCharacter.GetComponent<NoahMove>().GoToInteraction(targetPos, interactor, interactionList);
-                if (interactor.Debugging) Debug.Log("Moving to this: " + interactor);
+                GameManager.PlayerCharacter.GetComponent<NoahMove>().GoToInteraction(targetPos, interactor, validInteractions);
+                if (interactor.Debugging) /**Debug.Log("Moving to this: " + interactor)**/;
                 //Vector3 v = getPositionOfInteractable(interactor) + new Vector3 (1, 0,0); //
                 //GameObject.Find ("Sadie").GetComponent<NoahMove> ().GoTo (v); 
             }
